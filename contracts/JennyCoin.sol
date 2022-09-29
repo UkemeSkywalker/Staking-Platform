@@ -18,7 +18,7 @@ contract JennyCoins {
         name = "JennyCoins";
         symbol = "JCN";
         decimals = 18;
-        totalSupply = 2000000;
+        totalSupply = 20000001e18;
         owner = msg.sender;
     }
 

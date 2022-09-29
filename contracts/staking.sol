@@ -38,15 +38,24 @@ contract staking {
     }
 
 
-        function stake(uint256 amount) external view {
+        function stake(uint256 _amount) external {
 
             stakeDetails storage staker = stakers[msg.sender];
 
-            require(IERC20(stakedToken).balanceOf(msg.sender) > amount, "ERC20: Insufficient balance");
+            require(IERC20(stakedToken).balanceOf(msg.sender) > _amount, "ERC20: Insufficient balance");
             require(IERC721(BoredApes).balanceOf(msg.sender) > 1, "ERC721: You don not posses a BoredApe token");
+            require(IERC20(stakedToken).transferFrom(msg.sender, address(this), _amount));
 
             
+            staker.stakedTime = block.timestamp;
+            staker.amount = _amount;          
 
+
+        }
+
+        function reward(uint256 _amount) external {
+            
+            
         }
 
 }
